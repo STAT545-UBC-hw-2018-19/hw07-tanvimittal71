@@ -4,7 +4,7 @@
 \alias{pow}
 \title{Generic Power Function}
 \usage{
-pow(x, a, plot_it)
+pow(x, a, plot_it = FALSE)
 }
 \arguments{
 \item{x}{Vector to raise to some power.}
