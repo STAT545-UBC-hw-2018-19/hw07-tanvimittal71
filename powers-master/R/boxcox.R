@@ -1,6 +1,6 @@
 #' Apply box-cox transformation to smoothen non-linearity of data
 #'
-#' @param x is the vector to apply box-cox transformation
+#' @param x is the vector(positive values) to apply box-cox transformation
 #' @param lambda is the power parameter in box-cox transformation
 #' @return
 #' \itemize{

@@ -1,6 +1,6 @@
 #' Apply cube root
 #'
-#' @param x The vector to calculate cube root
+#' @param x The vector of positive numbers to calculate cube root
 #' @param plot_it Display a plot of \code{x} vs the output? Use logical.
 #' \code{FALSE} by default.
 #'

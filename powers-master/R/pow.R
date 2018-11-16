@@ -10,7 +10,7 @@
 #'
 #' @return The vector \code{x}, raised to the power of \code{a}.
 pow <- function(x, a, plot_it=FALSE) {
-    res <- x^(a)
-    if (plot_it) print(ggplot2::qplot(x, res))
-    return(res)
+    result <- x^(a)
+    if (plot_it) print(ggplot2::qplot(x, result))
+    return(result)
 }

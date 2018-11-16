@@ -7,7 +7,7 @@
 box.cox(x, lambda)
 }
 \arguments{
-\item{x}{is the vector to apply box-cox transformation}
+\item{x}{is the vector(positive values) to apply box-cox transformation}
 
 \item{lambda}{is the power parameter in box-cox transformation}
 }
