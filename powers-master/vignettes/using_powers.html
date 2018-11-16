@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="pandoc">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Tanvi Mittal">
+
+<meta name="date" content="2018-11-15">
+
+<title>Using the powers package</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+<script type="text/javascript" src="using_powers_files/MathJax.js"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+
+<body><div id="MathJax_Message" style="display: none;"></div>
+
+
+
+
+<h1 class="title toc-ignore">Using the <code>powers</code> package</h1>
+<h4 class="author"><em>Tanvi Mittal</em></h4>
+<h4 class="date"><em>2018-11-15</em></h4>
+
+
+
+<p><strong>Note</strong>: This package isn’t actually meant to be “serious”. I made it just for teaching purposes.</p>
+<p>Want to compute powers without having to use <code>^</code> or <code>**</code>? Give <code>sqrt</code> some friends by loading the <code>powers</code> package!</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(powers)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(tidyverse))</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(knitr)</a></code></pre></div>
+<p>Want squares, cubes, or reciprocals? Easy.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">square</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a></code></pre></div>
+<pre><code>##  [1]   1   4   9  16  25  36  49  64  81 100</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">cube</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a></code></pre></div>
+<pre><code>##  [1]    1    8   27   64  125  216  343  512  729 1000</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">reciprocal</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a></code></pre></div>
+<pre><code>##  [1] 1.0000000 0.5000000 0.3333333 0.2500000 0.2000000 0.1666667 0.1428571
+##  [8] 0.1250000 0.1111111 0.1000000</code></pre>
+<p><code>apply</code>-family friendly, too!</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">my_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="fl">0.5</span>, <span class="fl">1.7</span>)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">## So base-R-boring!</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">lapply</span>(my_list, <span class="cf">function</span>(x) x<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [[1]]
+##  [1]   1   4   9  16  25  36  49  64  81 100
+## 
+## [[2]]
+## [1] 0.25
+## 
+## [[3]]
+## [1] 2.89</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">lapply</span>(my_list,<span class="cf">function</span>(x) x<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>))</a></code></pre></div>
+<pre><code>## [[1]]
+##  [1] 1.000000 1.259921 1.442250 1.587401 1.709976 1.817121 1.912931
+##  [8] 2.000000 2.080084 2.154435
+## 
+## [[2]]
+## [1] 0.7937005
+## 
+## [[3]]
+## [1] 1.193483</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">## Use powers instead!</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">lapply</span>(my_list, square)</a></code></pre></div>
+<pre><code>## [[1]]
+##  [1]   1   4   9  16  25  36  49  64  81 100
+## 
+## [[2]]
+## [1] 0.25
+## 
+## [[3]]
+## [1] 2.89</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">lapply</span>(my_list,cbrt)</a></code></pre></div>
+<pre><code>## [[1]]
+##  [1] 1.000000 1.259921 1.442250 1.587401 1.709976 1.817121 1.912931
+##  [8] 2.000000 2.080084 2.154435
+## 
+## [[2]]
+## [1] 0.7937005
+## 
+## [[3]]
+## [1] 1.193483</code></pre>
+<p>It even comes with the ability to display its output in plot form!</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">reciprocal</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">plot_it=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<p><img src="data:image/png;base64,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"><!-- --></p>
+<pre><code>##  [1] 1.0000000 0.5000000 0.3333333 0.2500000 0.2000000 0.1666667 0.1428571
+##  [8] 0.1250000 0.1111111 0.1000000</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">cbrt</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="dt">plot_it=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<p><img src="data:image/png;base64,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"><!-- --></p>
+<pre><code>##  [1] 1.000000 1.259921 1.442250 1.587401 1.709976 1.817121 1.912931
+##  [8] 2.000000 2.080084 2.154435</code></pre>
+<p>Wow!!!</p>
+<p>Power package also consists of function for Box-cox transformation. 
+Box-cox transformation is used to normalize the data by varying 
+lambda(exponent) between -5 to 5.</p>
+<p>Example to use the function:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">kable</span>(<span class="kw">tibble</span>(<span class="dt">input=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="dt">BCtransformed_output =</span> <span class="kw">box.cox</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="dv">2</span>)))</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">input</th>
+<th align="right">BCtransformed_output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">0.0</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">1.5</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">4.0</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">7.5</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">12.0</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">17.5</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">24.0</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">31.5</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="right">40.0</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="right">49.5</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+
+
+</body></html>

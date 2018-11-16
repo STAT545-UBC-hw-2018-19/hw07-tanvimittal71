@@ -48,7 +48,7 @@ cbrt(1:10,plot_it=TRUE)
 
 Wow!!!
 
-Power package also consists of function for Box-cox transformation. Box-cox transformation is used to normalize the data by varying \code{lambda} between -5 to 5.
+Power package also consists of function for Box-cox transformation. Box-cox transformation is used to normalize the data by varying lambda(exponent) between -5 to 5.
 
 Example to use the function:
 
