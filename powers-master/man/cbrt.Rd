@@ -7,7 +7,7 @@
 cbrt(x, plot_it = FALSE)
 }
 \arguments{
-\item{x}{The vector to calculate cube root}
+\item{x}{The vector of positive numbers to calculate cube root}
 
 \item{plot_it}{Display a plot of \code{x} vs the output? Use logical.
 \code{FALSE} by default.}

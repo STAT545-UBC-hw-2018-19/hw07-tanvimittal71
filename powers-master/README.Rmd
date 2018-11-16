@@ -18,7 +18,7 @@ __Note__: This R package is not mean to be "serious". It's just for teaching pur
 
 # powers
 
-This is an R package that gives `sqrt()` friends by providing other power functions along with box-cox transformation.
+This is an R package that gives `sqrt()` friends by providing other power functions. Also, it includes box-cox transformation which is used to normalize the data to better fit a training model.
 
 ## Installation
 
@@ -37,6 +37,7 @@ See the vignette for more extensive use, but here's some examples:
 powers::square(2)
 powers:: cube(2)
 powers::reciprocal(2)
+powers::cbrt(2)
 powers::box.cox(3,4)
 ```
 

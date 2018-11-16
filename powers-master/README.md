@@ -10,7 +10,8 @@ teaching purposes.
 # powers
 
 This is an R package that gives `sqrt()` friends by providing other
-power functions along with box-cox transformation.
+power functions. Also, it includes box-cox transformation which is used
+to normalize the data to better fit a training model.
 
 ## Installation
 
@@ -18,8 +19,7 @@ You can install powers from github with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("STAT545-UBC-students/hw07-tanvimittal71
-/powers-master")
+devtools::install_github("STAT545-UBC-students/hw07-tanvimittal71/powers-master")
 ```
 
 ## Example
@@ -33,6 +33,8 @@ powers:: cube(2)
 #> [1] 8
 powers::reciprocal(2)
 #> [1] 0.5
+powers::cbrt(2)
+#> [1] 1.259921
 powers::box.cox(3,4)
 #> [1] 20
 ```
